@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="img-header"></div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="6">
+        <!--<ion-item>
+          <ion-label position="stacked">{{'modelo' | translate}}</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #modelosSelect [value]="modeloSelected"
+            (ionChange)="updateModelo(modelosSelect.value)" [disabled]="tipoModeloSelect.value === undefined">
+            <ion-select-option *ngFor="let modelo of modelos" [value]="modelo">
+              {{modelo}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>-->
+      </ion-col>
+      <ion-col sizeXl="4" sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+        <!--<ion-item>
+          <ion-label position="stacked">{{'densidadPies' | translate}}</ion-label>
+          <ion-input type="number" #densidadPiesSelect (keypress)="numberOnlyValidation($event)"
+            (ionInput)="updateDensidadPies(densidadPiesSelect.value)" [disabled]="hayCopas()"
+            [(ngModel)]="densidadPiesSelected">
+          </ion-input>
+        </ion-item>-->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
