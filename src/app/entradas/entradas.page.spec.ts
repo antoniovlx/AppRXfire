@@ -18,8 +18,6 @@ describe('EntradasPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  
   
 });

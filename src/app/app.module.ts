@@ -11,6 +11,8 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { FileOpener } from '@awesome-cordova-plugins/file-opener/ngx';
 import { MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
+import { DfmcPage } from './dfmc/dfmc.page';
+import { SoflamadoPipe } from './soflamado.pipe';
 
 /*let missingTranslations = {};
 
@@ -32,7 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SoflamadoPipe],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot({ animated: false }), 
     AppRoutingModule, HttpClientModule, TranslateModule.forRoot({

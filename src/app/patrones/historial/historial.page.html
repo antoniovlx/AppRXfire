@@ -1,0 +1,321 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="img-header"></div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12"> <ion-button color="success" (click)="export()" expand="block">{{'Exportar' | translate}}
+            <ion-icon slot="start" name="download"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-button color="light" (click)="filterFecha()" expand="block">
+            {{ 'Filtrar fecha' | translate}}
+          </ion-button>
+          <ng-container *ngIf="isFilterByDate">
+            <ion-datetime-button style="margin-top: 7px" datetime="datetime"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime [(ngModel)]="filterDate" (ionChange)="filterDataByDate(filterDateInput.value)"
+                  presentation="date" #filterDateInput id="datetime" [isDateEnabled]="isEnableDay"
+                  [showDefaultButtons]="true" [max]="today"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ng-container>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button color="tertiary" (click)="loadData(); isFilterByDate = false" expand="block">
+            {{ 'Mostrar todos' | translate}}
+          </ion-button>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button [disabled]="!isSelected()" color="danger" (click)="delete()" expand="block">{{'borrar' |
+            translate}}
+            <ion-icon slot="start" name="trash"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="mat-elevation-z8">
+            <div style="overflow-x: auto;">
+              <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation();">
+                    <mat-checkbox #checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row.idZamif, row)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="opciones">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let row">
+                    <ion-button (click)="verRegistro(row)">
+                      <ion-icon slot="icon-only" name="eye"></ion-icon>
+                    </ion-button>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fecha">
+                  <th mat-header-cell *matHeaderCellDef> {{'fecha' | translate}} </th>
+                  <td mat-cell *matCellDef="let row"> {{row.fecha | date:'d/M/YYYY, hh:mm:ss'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="v2m">
+                  <th mat-header-cell *matHeaderCellDef> {{'Vv' | translate}} (km/h)</th>
+                  <td mat-cell *matCellDef="let row"> {{row.velocidadViento}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ctotal">
+                  <th mat-header-cell *matHeaderCellDef> {{'Ct' | translate}} (t/ha) </th>
+                  <td mat-cell *matCellDef="let row"> {{row.cargaTotal}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="hfm">
+                  <th mat-header-cell *matHeaderCellDef> {{'HFDM' | translate}} (t/ha)</th>
+                  <td mat-cell *matCellDef="let row"> {{row.cargaCombustibleFinoMuerto }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="lineas">
+                  <th mat-header-cell *matHeaderCellDef> {{'Líneas' | translate}} </th>
+                  <td mat-cell *matCellDef="let row"> {{row.numeroLineasEncendido}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="distancia_lineas">
+                  <th mat-header-cell *matHeaderCellDef> {{'Distancias líneas' | translate}} (m) </th>
+                  <td mat-cell *matCellDef="let row"> {{row.distanciaLineasEncendido}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="velocidadFajasEstimado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Vp' | translate}} (km/h) </th>
+                  <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.resultadosEstimado.velocidadPropagacionFajas !== null; else vacio">
+                      {{row.resultadosEstimado.velocidadPropagacionFajas | number :
+                      '1.0-3'}}
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="longitudLlamaFajasEstimado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Ll' | translate}} (m) </th>
+                  <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.resultadosEstimado.longitudLlamaFajas !== null; else vacio">
+                      {{row.resultadosEstimado.longitudLlamaFajas | number : '1.0-3'}}
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="velocidadFlancosEstimado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Vp' | translate}} (km/h) </th>
+                  <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.resultadosEstimado.velocidadPropagacionFlancos !== null; else vacio">
+                      {{row.resultadosEstimado.velocidadPropagacionFlancos | number :'1.0-3'}}
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="longitudLlamaFlancosEstimado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Ll' | translate}} (m) </th>
+                  <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.resultadosEstimado.longitudLlamaFlancos !== null; else vacio">
+                      {{row.resultadosEstimado.longitudLlamaFlancos | number : '1.0-3'}}
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="velocidadPuntosEstimado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Vp' | translate}} (km/h) </th>
+                  <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.resultadosEstimado.velocidadPropagacionPuntos !== null; else vacio">
+                      {{row.resultadosEstimado.velocidadPropagacionPuntos | number :'1.0-3'}}
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="longitudLlamaPuntosEstimado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Ll' | translate}} (m) </th>
+                  <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.resultadosEstimado.longitudLlamaPuntos !== null; else vacio">
+                      {{row.resultadosEstimado.longitudLlamaPuntos | number : '1.0-3'}}
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="velocidadFajasObservado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Vp' | translate}} (km/h) </th>
+                  <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.resultadosObservado.velocidadPropagacionFajas !== null; else vacio">
+                      {{row.resultadosObservado.velocidadPropagacionFajas | number :'1.0-3'}}
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="longitudLlamaFajasObservado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Ll' | translate}} (m) </th>
+                  <td mat-cell *matCellDef="let row"> 
+                    <ng-container *ngIf="row.resultadosObservado.longitudLlamaFajas !== null; else vacio">
+                      {{row.resultadosObservado.longitudLlamaFajas | number : '1.0-3'}}
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="velocidadFlancosObservado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Vp' | translate}} (km/h) </th>
+                  <td mat-cell *matCellDef="let row"> 
+                    <ng-container *ngIf="row.resultadosObservado.velocidadPropagacionFlancos !== null; else vacio">
+                      {{row.resultadosObservado.velocidadPropagacionFlancos | number :'1.0-3'}}
+                    </ng-container>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="longitudLlamaFlancosObservado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Ll' | translate}} (m) </th>
+                  <td mat-cell *matCellDef="let row"> 
+                    <ng-container *ngIf="row.resultadosObservado.longitudLlamaFlancos !== null; else vacio">
+                      {{row.resultadosObservado.longitudLlamaFlancos | number :'1.0-3'}}
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="velocidadPuntosObservado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Vp' | translate}} (km/h) </th>
+                  <td mat-cell *matCellDef="let row"> 
+                    <ng-container *ngIf="row.resultadosObservado.velocidadPropagacionPuntos !== null; else vacio">
+                      {{row.resultadosObservado.velocidadPropagacionPuntos | number :'1.0-3'}}
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="longitudLlamaPuntosObservado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Ll' | translate}} (m) </th>
+                  <td mat-cell *matCellDef="let row"> 
+                    <ng-container *ngIf="row.resultadosObservado.longitudLlamaPuntos !== null; else vacio">
+                      {{row.resultadosObservado.longitudLlamaPuntos | number :'1.0-3'}}
+                    </ng-container>
+                  </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="estimado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Estimado' | translate}} </th>
+                  <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.resultadosEstimado !== undefined">
+                      <ion-icon name="checkmark-outline"></ion-icon>
+                    </ng-container>
+                    <ng-container *ngIf="row.resultadosEstimado === undefined">
+                      <ion-icon name="close-outline"></ion-icon>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="observado">
+                  <th mat-header-cell *matHeaderCellDef> {{'Observado' | translate}} </th>
+                  <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.resultadosObservado!== undefined">
+                      <ion-icon name="checkmark-outline"></ion-icon>
+                    </ng-container>
+                    <ng-container *ngIf="row.resultadosEstimado === undefined">
+                      <ion-icon name="close-outline"></ion-icon>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="empty1">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="8"></th>
+                </ng-container>
+
+                <ng-container matColumnDef="empty2">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="8"></th>
+                </ng-container>
+
+
+                <ng-container matColumnDef="fajasEstimado">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> {{'Fajas' |
+                    translate}}
+                  </th>
+                </ng-container>
+
+                <ng-container matColumnDef="flancosEstimado">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> {{'Flancos' |
+                    translate}}
+                  </th>
+                </ng-container>
+
+                <ng-container matColumnDef="puntosEstimado">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> {{'Puntos' |
+                    translate}}
+                  </th>
+                </ng-container>
+
+                <ng-container matColumnDef="fajasObservado">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> {{'Fajas' |
+                    translate}}
+                  </th>
+                </ng-container>
+
+                <ng-container matColumnDef="flancosObservado">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> {{'Flancos' |
+                    translate}}
+                  </th>
+                </ng-container>
+
+                <ng-container matColumnDef="puntosObservado">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> {{'Puntos' |
+                    translate}}
+                  </th>
+                </ng-container>
+
+                <ng-container matColumnDef="estimado">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="6"> {{'Estimado' |
+                    translate}}
+                  </th>
+                </ng-container>
+
+                <ng-container matColumnDef="observado">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="6"> {{'Observado' |
+                    translate}}
+                  </th>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['empty1','estimado', 'observado']"></tr>
+                <tr mat-header-row
+                  *matHeaderRowDef="['empty2','fajasEstimado', 'flancosEstimado', 'puntosEstimado', 'fajasObservado', 'flancosObservado', 'puntosObservado']">
+                </tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <!--<tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="5">No data matching the filter "{{filter.value}}"</td>
+              </tr>-->
+              </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Selecciona número de registros por página"></mat-paginator>
+
+            <ng-template #vacio>
+              -
+            </ng-template>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="ScrollToTop()">
+    <ion-fab-button color="light">
+      <ion-icon name="arrow-up-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

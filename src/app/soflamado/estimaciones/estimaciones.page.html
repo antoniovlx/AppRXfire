@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="img-header"></div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-grid fixed>
+    <resultado-estimaciones [resultados]="resultados"></resultado-estimaciones>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="ScrollToTop()">
+    <ion-fab-button color="light">
+      <ion-icon name="arrow-up-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

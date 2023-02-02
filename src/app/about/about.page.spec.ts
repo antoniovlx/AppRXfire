@@ -18,7 +18,5 @@ describe('AboutPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  
 });

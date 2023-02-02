@@ -1,6 +1,6 @@
 {
   "appId": "io.labif.app",
-  "appName": "ionic-angular-template",
+  "appName": "apprxfire",
   "webDir": "www",
   "bundledWebRuntime": "false",
   "electron":{

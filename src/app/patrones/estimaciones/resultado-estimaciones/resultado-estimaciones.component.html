@@ -1,0 +1,182 @@
+<titulo-apartado [imagePath]="'./assets/img/estimacion.png'" [titulo]="'Método estimado'">
+</titulo-apartado>
+<ion-row>
+  <ion-col size="12">
+    <ion-item class="label-item">
+      <ion-icon name="arrow-forward" slot="start"></ion-icon>
+      <ion-label position="stacked">Fajas</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+    *ngIf="resultados.estimado.fajas.velocidadPropagacion !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Velocidad propagación' | translate}} (km/h)
+      </ion-label>
+      <ion-input type="number" readonly="true"
+        [value]="resultados.estimado.fajas.velocidadPropagacion | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.estimado.fajas.longitudLlama !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Longitud llama' | translate}} (t/ha)</ion-label>
+      <ion-input type="number" readonly="true" [value]="resultados.estimado.fajas.longitudLlama | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col size="12" *ngIf="resultados.estimado.fajas.velocidadPropagacion === undefined">
+    <div class="no-calculado-text">
+      <ion-text color="warning"><ion-icon name="warning"></ion-icon>
+        {{ 'No calculado' | translate}}</ion-text>
+    </div>
+  </ion-col>
+  <ion-col size="12">
+    <ion-item class="label-item">
+      <ion-icon name="arrow-forward" slot="start"></ion-icon>
+      <ion-label position="stacked">Flancos</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+    *ngIf="resultados.estimado.flancos.velocidadPropagacion !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Velocidad propagación' | translate}} (km/h)
+      </ion-label>
+      <ion-input type="number" readonly="true"
+        [value]="resultados.estimado.flancos.velocidadPropagacion | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.estimado.flancos.longitudLlama !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Longitud llama' | translate}} (t/ha)</ion-label>
+      <ion-input type="number" readonly="true" [value]="resultados.estimado.flancos.longitudLlama | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col size="12" *ngIf="resultados.estimado.flancos.velocidadPropagacion === undefined">
+    <div class="no-calculado-text">
+      <ion-text color="warning"><ion-icon name="warning"></ion-icon>
+        {{ 'No calculado' | translate}}</ion-text>
+    </div>
+  </ion-col>
+  <ion-col size="12">
+    <ion-item class="label-item">
+      <ion-icon name="arrow-forward" slot="start"></ion-icon>
+      <ion-label position="stacked">Puntos</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+    *ngIf="resultados.estimado.puntos.velocidadPropagacion !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Velocidad propagación' | translate}} (km/h)
+      </ion-label>
+      <ion-input type="number" readonly="true"
+        [value]="resultados.estimado.puntos.velocidadPropagacion | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.estimado.puntos.longitudLlama !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Longitud llama' | translate}} (t/ha)</ion-label>
+      <ion-input type="number" readonly="true" [value]="resultados.estimado.puntos.longitudLlama | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col size="12" *ngIf="resultados.estimado.puntos.velocidadPropagacion === undefined">
+    <div class="no-calculado-text">
+      <ion-text color="warning"><ion-icon name="warning"></ion-icon>
+        {{ 'No calculado' | translate}}</ion-text>
+    </div>
+  </ion-col>
+</ion-row>
+<titulo-apartado [imagePath]="'./assets/img/observado.png'" [titulo]="'Método observado'">
+</titulo-apartado>
+<ion-row>
+  <ion-col size="12">
+    <ion-item class="label-item">
+      <ion-icon name="arrow-forward" slot="start"></ion-icon>
+      <ion-label position="stacked">Fajas</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+    *ngIf="resultados.observado.fajas.velocidadPropagacion !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Velocidad propagación' | translate}} (km/h)
+      </ion-label>
+      <ion-input type="number" readonly="true"
+        [value]="resultados.observado.fajas.velocidadPropagacion | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.observado.fajas.longitudLlama !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Longitud llama' | translate}} (t/ha)</ion-label>
+      <ion-input type="number" readonly="true" [value]="resultados.observado.fajas.longitudLlama | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col size="12" *ngIf="resultados.observado.fajas.velocidadPropagacion === undefined">
+    <div class="no-calculado-text">
+      <ion-text color="warning"><ion-icon name="warning"></ion-icon>
+        {{ 'No calculado' | translate}}</ion-text>
+    </div>
+  </ion-col>
+  <ion-col size="12">
+    <ion-item class="label-item">
+      <ion-icon name="arrow-forward" slot="start"></ion-icon>
+      <ion-label position="stacked">Flancos</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+    *ngIf="resultados.observado.flancos.velocidadPropagacion !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Velocidad propagación' | translate}} (km/h)
+      </ion-label>
+      <ion-input type="number" readonly="true"
+        [value]="resultados.observado.flancos.velocidadPropagacion | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.observado.flancos.longitudLlama !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Longitud llama' | translate}} (t/ha)</ion-label>
+      <ion-input type="number" readonly="true" [value]="resultados.observado.flancos.longitudLlama | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col size="12" *ngIf="resultados.observado.flancos.velocidadPropagacion === undefined">
+    <div class="no-calculado-text">
+      <ion-text color="warning"><ion-icon name="warning"></ion-icon>
+        {{ 'No calculado' | translate}}</ion-text>
+    </div>
+  </ion-col>
+  <ion-col size="12">
+    <ion-item class="label-item">
+      <ion-icon name="arrow-forward" slot="start"></ion-icon>
+      <ion-label position="stacked">Puntos</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+    *ngIf="resultados.observado.puntos.velocidadPropagacion !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Velocidad propagación' | translate}} (km/h)
+      </ion-label>
+      <ion-input type="number" readonly="true"
+        [value]="resultados.observado.puntos.velocidadPropagacion | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.observado.puntos.longitudLlama !== undefined">
+    <ion-item class="resultados-apartado">
+      <ion-label position="stacked">{{'Longitud llama' | translate}} (t/ha)</ion-label>
+      <ion-input type="number" readonly="true" [value]="resultados.observado.puntos.longitudLlama | number : '1.0-3'">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col size="12" *ngIf="resultados.observado.puntos.velocidadPropagacion === undefined">
+    <div class="no-calculado-text">
+      <ion-text color="warning"><ion-icon name="warning"></ion-icon>
+        {{ 'No calculado' | translate}}</ion-text>
+    </div>
+  </ion-col>
+</ion-row>

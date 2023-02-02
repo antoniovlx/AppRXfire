@@ -40,7 +40,7 @@ export class OrmService {
 
   platform: string;
 
-  constructor(private sqlite: SQLiteService, private http: HttpClient, private platformIonic: Platform) {
+  constructor(private sqlite: SQLiteService) {
     _ormService = this;
     this.platform = Capacitor.getPlatform();
   }
@@ -97,14 +97,17 @@ export class OrmService {
     // when using Capacitor, you might want to close existing connections, 
     // otherwise new connections will fail when using dev-live-reload
     // see https://github.com/capacitor-community/sqlite/issues/106
-    CapacitorSQLite.checkConnectionsConsistency({
+    /*CapacitorSQLite.checkConnectionsConsistency({
       dbNames: [], // i.e. "i expect no connections to be open"
     }).catch((e) => {
       // the plugin throws an error when closing connections. we can ignore
       // that since it is expected behaviour
       console.log(e);
       return {};
-    });
+    });*/
+
+    const isDatabaseName = await this.sqlite.isDatabase(databaseName);
+    const isConnection = await this.sqlite.isConnection(databaseName);
 
     // create a SQLite Connection Wrapper
     _sqliteConnection = new SQLiteConnection(CapacitorSQLite);
@@ -120,9 +123,13 @@ export class OrmService {
 
     //if (this.platform !== 'electron') {
     //console.log(this.platform)
-    await this.sqlite.copyFromAssets(false);
+    //await this.sqlite.copyFromAssets(false);
     //}
 
+    if (!isDatabaseName) {
+      await this.sqlite.copyFromAssets(false);
+    }
+    //await this.sqlite.copyFromAssets(false);
     const dbOptions: ConnectionOptions = {
       logging: ['error', 'query', 'schema'],
       type: 'capacitor',

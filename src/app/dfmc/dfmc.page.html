@@ -1,0 +1,149 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secundary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <breadcrumb [title]="pathData.title" [imagePath]="pathData.imagePath"></breadcrumb>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-grid fixed>
+      <titulo-apartado [imagePath]="'./assets/img/hoja.png'" [titulo]="'header_hfm'">
+      </titulo-apartado>
+      <ion-row>
+        <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="6">
+          <ion-item>
+            <ion-label position="stacked">{{'Hora previsión' | translate}}</ion-label>
+            <ion-select cancelText="{{'Cancelar' | translate}}" #horaprevisionSelect [value]="horaprevisionSelected"
+              (ionChange)="updateHoraprevisionSelected(horaprevisionSelect.value)">
+              <ion-select-option *ngFor="let hora of horasprevision" [value]="hora">
+                {{hora.intervalo}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="6">
+          <ion-item>
+            <ion-label position="stacked">{{'Hora solar' | translate}}</ion-label>
+            <ion-select cancelText="{{'Cancelar' | translate}}" #horasolarSelect [value]="horasolarSelected"
+              (ionChange)="updateHorasolarSelected(horasolarSelect.value)">
+              <ion-select-option *ngFor="let hora of horasolar" [value]="hora">
+                {{hora}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+          <ion-item>
+            <ion-label position="stacked">{{'Mes prevision' | translate}}</ion-label>
+            <ion-select cancelText="{{'Cancelar' | translate}}" #mesprevisionSelect [value]="mesPrevisionSelected"
+              (ionChange)="updateMesPrevisionSelected(mesprevisionSelect.value)">
+              <ion-select-option value="1">{{ 'enero' | translate }} </ion-select-option>
+              <ion-select-option value="2">{{ 'febrero' | translate}} </ion-select-option>
+              <ion-select-option value="3">{{ 'marzo' | translate}} </ion-select-option>
+              <ion-select-option value="4">{{ 'abril' | translate}} </ion-select-option>
+              <ion-select-option value="5">{{ 'mayo' | translate}} </ion-select-option>
+              <ion-select-option value="6">{{ 'junio' | translate}} </ion-select-option>
+              <ion-select-option value="7">{{ 'julio' | translate }}</ion-select-option>
+              <ion-select-option value="8">{{ 'agosto' | translate }}</ion-select-option>
+              <ion-select-option value="9">{{ 'septiembre' | translate }}</ion-select-option>
+              <ion-select-option value="10">{{ 'octubre' | translate }}</ion-select-option>
+              <ion-select-option value="11">{{ 'noviembre' | translate}} </ion-select-option>
+              <ion-select-option value="12">{{ 'diciembre' | translate }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col sizeXl="4" sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+          <ion-item>
+            <ion-label position="stacked">{{'Temperatura Aire' | translate}} (ºC)</ion-label>
+            <ion-input type="number" #temperaturaAireSelect (keypress)="ui.numberOnlyValidation($event)"
+              (ionInput)="updateTemperaturaAireSelected(temperaturaAireSelect.value)"
+              [(ngModel)]="temperaturaAireSelected">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col sizeXl="8" sizeLg="8" sizeMd="12" sizeSm="12" sizeXs="12">
+          <ion-item>
+            <ion-label position="stacked">{{'Suelo' | translate}}</ion-label>
+            <ion-select cancelText="{{'Cancelar' | translate}}" #sueloSelect [value]="sueloSelected"
+              (ionChange)="updateSueloSelected(sueloSelect.value)">
+              <ion-select-option value="Shaded">{{ 'Sombreado' | translate }} </ion-select-option>
+              <ion-select-option value="Exposed">{{ 'Expuesto' | translate}} </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col sizeXl="4" sizeLg="4" sizeMd="4" sizeSm="12" sizeXs="12">
+          <ion-item>
+            <ion-label position="stacked">{{'Humedad relativa' | translate}} (%)</ion-label>
+            <ion-input type="number" #humedadRelativaSelect (keypress)="ui.numberOnlyValidation($event)"
+              (ionInput)="updateHumedadRelativaSelected(humedadRelativaSelect.value)"
+              [(ngModel)]="humedadRelativaSelected">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="6">
+          <ion-item>
+            <ion-label position="stacked">{{'Exposicion' | translate}} (º)</ion-label>
+            <ion-select cancelText="{{'Cancelar' | translate}}" #exposicionSelect [value]="exposicionSelected"
+              (ionChange)="updateExposicionSelected(exposicionSelect.value)">
+              <ion-select-option value="N">{{ 'N' | translate }} </ion-select-option>
+              <ion-select-option value="W">{{ 'O' | translate}} </ion-select-option>
+              <ion-select-option value="S">{{ 'S' | translate}} </ion-select-option>
+              <ion-select-option value="E">{{ 'E' | translate}} </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col sizeXl="4" sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="6">
+          <ion-item>
+            <ion-label position="stacked">{{'Pendiente' | translate}} (%)</ion-label>
+            <ion-select [disabled]="sueloSelect.value === 'Shaded' ? true : false"
+              cancelText="{{'Cancelar' | translate}}" #pendienteSelect [value]="pendienteSelected"
+              (ionChange)="updatePendienteSelected(pendienteSelect.value)">
+              <ion-select-option value="0-30">{{ '0-30' | translate}} </ion-select-option>
+              <ion-select-option value=">30">{{ '>30' | translate}} </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <titulo-apartado [imagePath]="'./assets/img/estimacion.png'" [titulo]="'Estimación'">
+          </titulo-apartado>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item class="resultados-apartado">
+            <ion-label position="fixed" style="font-size: 16px !important;">{{'HFM' | translate}}:
+            </ion-label>
+            <ion-input type="number" class="calculado-text" readonly="true" *ngIf="hfmResult !== 0; else noData"
+              [value]="hfmResult | number : '1.0-3'">
+            </ion-input>
+          </ion-item>
+          <ng-template #noData>
+              <div class="calculado-text" style="margin-top: 1px">
+                <ion-text color="danger"><ion-icon name="warning"></ion-icon>
+                  {{ 'Faltan datos' | translate}}</ion-text>
+              </div>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="ScrollToTop()">
+    <ion-fab-button color="light">
+      <ion-icon name="arrow-up-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

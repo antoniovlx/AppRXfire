@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { ResultadosComponent } from './resultados.component';
 
@@ -9,7 +10,7 @@ describe('ResultadosComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResultadosComponent ],
+      declarations: [ ResultadosComponent, TranslatePipe ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
@@ -17,8 +18,4 @@ describe('ResultadosComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

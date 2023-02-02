@@ -30,8 +30,8 @@
 //@import '~@swimlane/ngx-datatable/assets/icons.css';
 
 :root {
-  --ion-color-primary: #b4b45c;
-  --ion-color-secondary: #f7f7d3;
+  --ion-color-primary: #d06507;
+  --ion-color-secondary: #dfad82;
   /*--ion-color-secondary-rgb: 0, 102, 0;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
@@ -42,6 +42,7 @@
 body {
   background: url("./assets/background.png");
   background-size: cover;
+  font-family: small arial,sans-serif;
 }
 
 ion-title {
@@ -52,95 +53,9 @@ ion-content {
   --background: transparent;
 }
 
-div.select-text {
-  white-space: normal !important;
-}
-
-.swiper-wrapper {
-  height: auto !important;
-}
-
-.datatable-header-cell-template-wrap {
-  text-align: center !important;
-}
-
-.datatable-body-cell-label {
-  text-align: center !important;
-}
-
-.temperaturaCell {
-  background-color: rgba(255, 217, 0, 0.116);
-}
-
-.temperaturaCellMin {
-  background-color: rgba(255, 217, 0, 0.224);
-}
-
-.temperaturaCellMax {
-  background-color: rgba(255, 217, 0, 0.422);
-}
-
-.humedadCell {
-  background-color: rgba(0, 204, 255, 0.116);
-}
-
-.humedadCellMin {
-  background-color: rgba(0, 204, 255, 0.224);
-}
-
-.humedadCellMax {
-  background-color: rgba(0, 204, 255, 0.422);
-}
-
-.vientoCell {
-  background-color: rgba(51, 255, 0, 0.116);
-}
-
-.vientoCellMin {
-  background-color: rgba(51, 255, 0, 0.224);
-}
-
-.vientoCellMax {
-  background-color: rgba(51, 255, 0, 0.422);
-}
-
-.ngx-datatable .datatable-footer {
-  position: absolute;
-  top: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-.ngx-datatable .datatable-header {
-  position: absolute;
-  top: 60px;
-  height: 40px !important;
-}
-
-.ngx-datatable .datatable-body {
-  margin-top: 100px;
-}
-
-.ngx-datatable.material .datatable-footer .datatable-pager {
-  margin-left: -80px;
-}
-
-.datatable-row-detail {
-  width: 100vw;
-}
-
-datatable-scroller {
-  width: 100% !important;
-}
-
-.toast-message {
-  text-align: center !important;
-}
-
 ion-grid {
   margin-top: 30px !important;
 }
-
-
 
 @media (min-width: 800px) {
   .alert-wrapper {
@@ -323,7 +238,7 @@ ion-select::part(icon) {
 }
 
 .mat-row:hover {
-  background-color: rgb(180, 180, 92);
+  background-color: var(--ion-color-secondary);
 }
 
 h4 {
@@ -442,12 +357,10 @@ td.mat-cell {
   color: rgb(51, 51, 51);
 }
 
-
-
 th.mat-header-cell {
   font-size: 13px !important;
   font-weight: 500;
-  background-color: #c3c37c;
+  background-color: var(--ion-color-secondary)
 }
 
 thead tr th {
@@ -581,17 +494,28 @@ ion-slides {
 }
 
 ion-item {
-  --border-color: #fff;
+  --border-color: #fff0;
   --inner-padding-bottom: 3px;
   --background: rgba(255, 255, 255, 0);
   margin-bottom: 3px;
   font-size: 14px;
-  --highlight-color-valid: rgb(180, 180, 92);
+  --highlight-color-valid: var(--ion-color-primary);
 }
 
 ion-item.item-has-focus>ion-label {
   //color: rgb(180, 180, 92) !important;
 }
+
+ion-item.checkbox {
+  --border-color: white;
+  // background-color: wheat;
+}
+
+ion-item.checkbox ion-label {
+  margin-top: 15px;
+  font-size: 14px !important;
+}
+
 
 ion-label {
   color: rgb(49, 49, 28) !important;
@@ -602,9 +526,20 @@ ion-col ion-item {
   min-height: 60px;
 }
 
+ion-col ion-item.label-item {
+  --border-color: white;
+  min-height: 20px;
+
+}
+
 ion-col ion-label {
   font-weight: 500;
   min-height: 16px;
+}
+
+.item.sc-ion-label-md-h,
+.item .sc-ion-label-md-h {
+  overflow: visible !important;
 }
 
 .mat-expansion-panel-header {
@@ -643,7 +578,7 @@ ion-note {
   /*change color of label*/
   //color: green !important;
   font-weight: 500;
-  color: rgb(180, 180, 92) !important;
+  color: var(--ion-color-primary) !important;
 }
 
 .mat-form-field-underline {
@@ -653,12 +588,12 @@ ion-note {
 
 .mat-form-field-ripple {
   /*change color of underline when focused*/
-  background-color: rgb(180, 180, 92) !important;
+  background-color: var(--ion-color-primary) !important;
 }
 
 .mat-option.mat-active {
   font-weight: 600;
-  color: rgb(180, 180, 92) !important;
+  color: var(--ion-color-primary) !important;
 }
 
 // text-overflow ion-select

@@ -1,0 +1,25 @@
+<titulo-apartado [imagePath]="'./assets/img/estimacion.png'" [titulo]="'Estimaciones'">
+</titulo-apartado>
+<ion-row>
+  <ion-col sizeLg="4" sizeMd="6" sizeSm="12" sizeXs="12">
+    <ion-item>
+      <ion-label position="stacked">{{'Altura de soflamado media' | translate}} (m)</ion-label>
+      <ion-input [(ngModel)]="resultados.alturaSoflamadoMedia" readonly="true">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="4" sizeMd="6" sizeSm="12" sizeXs="12">
+    <ion-item>
+      <ion-label position="stacked">{{'Volumen de copa soflamada' | translate}} (%)</ion-label>
+      <ion-input [(ngModel)]="resultados.volumenCopaSoflamado" readonly="true">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col sizeLg="4" sizeMd="12" sizeSm="12" sizeXs="12">
+    <ion-item>
+      <ion-label position="stacked">{{'Altura de soflamado hueco' | translate}} (m) </ion-label>
+      <ion-input [(ngModel)]="resultados.alturaSoflamadoHueco" readonly="true">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+</ion-row>

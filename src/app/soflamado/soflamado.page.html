@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secundary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <breadcrumb [title]="pathData.title" [imagePath]="pathData.imagePath"></breadcrumb>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <div id="container">
+    <ion-tabs>
+      <ion-tab-bar slot="top">
+        <ion-tab-button tab="entradas">
+          <ion-icon name="create"></ion-icon>
+          <ion-label>{{'Entradas' | translate}}</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="estimaciones">
+          <ion-icon name="calculator"></ion-icon>
+          <ion-label>{{'Estimaciones' | translate}}</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="historial">
+          <ion-icon name="calendar"></ion-icon>
+          <ion-label>{{'Historial' | translate}}</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </div>
+</ion-content>

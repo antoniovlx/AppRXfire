@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
+import { AfterContentInit, AfterViewInit, Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Location, ViewportScroller } from '@angular/common';
 import { AppService } from '../services/app.service';
 import { UiService } from '../services/ui.service';
 import { IonContent } from '@ionic/angular';
@@ -15,15 +15,20 @@ export class AboutPage implements OnInit, AfterViewInit {
   title: string = "Créditos";
   imagePath: string = "./assets/img/question.png";
 
-  @ViewChild("content", { static: false }) content: IonContent;
+  @ViewChild("content", { static: false })
+  content: IonContent;
 
   constructor(private uiService: UiService) { }
 
-  ngOnInit() {
-   
-  }
-  
   ngAfterViewInit(): void {
-    this.uiService.onTopScrolled(this.content);
+ 
+  }
+
+  ngOnInit() {
+
+  }
+
+  ScrollToTop() {
+    this.uiService.scrollTop$(this.content);
   }
 }

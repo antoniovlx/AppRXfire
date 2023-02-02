@@ -1,0 +1,60 @@
+ion-label {
+    font-size: 18px !important;
+}
+
+#img-header {
+    background-image: url("../../../assets/header_entradas.jpg");
+    height: 80px;
+    background-repeat: repeat-x;
+}
+
+ion-grid {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
+    margin-top: 20px;
+}
+
+.mat-row:hover {
+    background-color: white;
+}
+
+th,
+td {
+    padding: 1px 8px 1px 8px !important;
+}
+
+.mat-table {
+    width: 100%;
+}
+
+@media (min-width: 1195px) {
+    .mat-table {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 1600px) {
+    ion-grid {
+        width: 80%;
+    }
+}
+
+th.mat-header-cell{
+    color: white;
+    text-shadow: 0 0 2px rgb(0, 0, 0);
+}
+
+.mat-column-estimado{
+    background-color: #d98945
+}
+
+.mat-column-observado{
+    background-color: #d98945
+}
+
+.mat-column-flancosEstimado, .mat-column-fajasEstimado, .mat-column-puntosEstimado,
+.mat-column-flancosObservado, .mat-column-fajasObservado, .mat-column-puntosObservado{
+    background-color: #d39968
+}

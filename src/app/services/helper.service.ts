@@ -6,6 +6,6 @@ import { UtilService } from './util.service';
 })
 export class HelperService {
 
-  constructor(private utilService: UtilService) { }
+  constructor() { }
 
 }

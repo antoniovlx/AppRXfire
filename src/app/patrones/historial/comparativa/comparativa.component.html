@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Comparativa</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()">OK</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="4">
+        <ion-item style="--border-color: rgb(255, 255, 255);">
+          <ion-label position="stacked">{{'Fecha' | translate}} </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item>
+          <ion-input readonly="true" [value]="estimaciones[0].fecha | date">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4"> <ion-item>
+          <ion-input readonly="true" [value]="estimaciones[1].fecha | date">
+          </ion-input>
+        </ion-item></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col sizeXs="12" sizeSm="6">
+        <ion-item style="--border-color: rgb(255, 255, 255);">
+          <ion-label position="stacked">{{'Vviento (2m suelo)' | translate}} (km/h)</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeXs="6" sizeSm="3">
+        <ion-item>
+          <ion-input readonly="true" [value]="estimaciones[0].velocidadViento">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeXs="6" sizeSm="3"> <ion-item>
+          <ion-input readonly="true" [value]="estimaciones[1].velocidadViento">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

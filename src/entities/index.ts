@@ -1,6 +1,12 @@
-import { Tcr } from "./Tcr";
+import { EstimacionesPatrones } from "./EstimacionesPatrones";
+import { EstimacionesObservado } from "./EstimacionesObservado";
+import { EstimacionesEstimado } from "./EstimacionesEstimado";
+import { EstimacionesSoflamado } from "./EstimacionesSoflamado";
 
 
 export default [
-  Tcr
+  EstimacionesPatrones,
+  EstimacionesObservado,
+  EstimacionesEstimado,
+  EstimacionesSoflamado
 ]  

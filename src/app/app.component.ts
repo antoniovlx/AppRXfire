@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { appPages } from './app-routing.module';
 import { UiService } from './services/ui.service';
 import { Title } from '@angular/platform-browser';
+import { ViewportScroller } from '@angular/common';
 
 declare global {
   interface Window {
@@ -38,7 +39,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     private sqlite: SQLiteService,
     public translate: TranslateService,
     private uiService: UiService,
-    private titleService: Title
+    private titleService: Title,
+    private scroll: ViewportScroller
   ) {
 
     const lang = localStorage.getItem('lang');
@@ -126,10 +128,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     } catch (err) {
       console.log(`Error: ${err}`);
     }
-  }
-
-  scrollToTop() {
-    this.uiService.scrollTop$(true);
   }
 
   @HostListener('window:scroll') onScroll(e: Event): void {

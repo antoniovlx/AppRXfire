@@ -22,28 +22,56 @@
       <ion-grid fixed style="margin-top:60px">
         <ion-row>
           <ion-col size="12" class="ion-text-justify">
-            <ion-note>Copyright &copy; {{"2022 Laboratorio de Defensa contra Incendios Forestales y Manejo del Fuego de la Universidad de Córdoba, España (LABIF-UCO)" | translate}}</ion-note>
+            <ion-note>Copyright &copy; 2023 {{"Laboratorio de Defensa contra Incendios Forestales y Manejo del Fuego de la Universidad de Córdoba, España (LABIF-UCO)" | translate}}</ion-note>
 
             <p>{{ 'bienvenida_creditos' | translate }}
             </p>
 
             <p>{{ 'descripcion_creditos' | translate}}</p>
 
+            <ul>
+              <li>
+                Molina J.R., Ortega M., Rodríguez y Silva F., 2022. Scorch height and volume modeling in prescribed
+                fires: effects of canopy gaps in Pinus pinaster stands in Southern Europe. Forest Ecology and Management
+                506, 119979. <a href="https://www.sciencedirect.com/science/article/pii/S0378112721010720">https://www.sciencedirect.com/science/article/pii/S0378112721010720</a>
+              </li>
+              <li>
+                Molina J.R., Ortega M., Rodríguez y Silva F., 2022. Fire ignition patterns to manage prescribed fire
+                behavior: application to mediterranean pine forests. Journal of Environmental Management, 114052.
+                <a href="https://www.sciencedirect.com/science/article/pii/S0301479721021149">https://www.sciencedirect.com/science/article/pii/S0301479721021149</a>
+              </li>
+
+              <li>
+                Molina J.R., Ortega M., Rodríguez y Silva F., 2021. Useful life of prescribed fires in southern
+                Mediterranean Basin. An application to Pinus pinaster stands in Sierra Morena Range. Forests 12, 486.
+                <a href="https://www.mdpi.com/1999-4907/12/4/486">https://www.mdpi.com/1999-4907/12/4/486</a>
+              </li>
+
+              <li>
+                Molina J.R., García J.P., Fernández J.J., Rodríguez y Silva F., 2018. Prescribed fire experiences on
+                crop residue removal for biomass exploitations. Application to the maritime pine forests in the
+                Mediterranean Basin. Science of the Total Environment 612, 63-70.
+              </li>
+            </ul>
+
             <div>
-              <span>{{ 'Este programa ha sido desarrollado en el marco financiero del proyecto Interreg-Poctep:' | translate}}</span>
+              <span>{{ 'Este programa ha sido desarrollado en el marco financiero del proyecto Interreg-Poctep:' |
+                translate}}</span>
             </div>
             <ul>
-              <li>"{{ 'Fortalecimiento de los sistemas transfronterizos de prevención y extinción de incendios forestales y mejora de los recursos para la generación de empleo rural post Covid-19 (FIREPOCTEP)' | translate }}"</li>
-              <li>"{{ 'Centro Ibérico para la Investigación y Lucha contra los Incendios Forestales (CILIFO)' | translate }}"</li>
+              <li>"{{ 'Centro Ibérico para la Investigación y Lucha contra los Incendios Forestales (CILIFO)' |
+                translate }}"</li>
+              <li>"{{ "Mejora de la resiliencia a los incendios de los bosques mediterráneos. Proyecto ENFIRES” (PID2020-116494RR-C44)" |
+                translate }}</li>
             </ul>
 
             <ion-row>
               <ion-col size="12"> <img style="margin-top: 25px; margin-bottom: 15px; margin-left: 20px; width: 350px;"
                   src="./assets/img/interreg.png" alt="interreg">
-                <img src="./assets/img/firepoctep.jpg" alt="firepoctep"
-                  style="margin-top: 15px; margin-left: 30px; width: 100px; margin-bottom:20px;">
                 <img src="./assets/img/cilifo.png" alt="cilifo"
-                  style="margin-top: 15px; margin-left: 20px; width: 150px; margin-bottom:20px;">
+                  style="margin-top: 15px; margin-left: 20px; width: 200px; margin-bottom:20px;">
+                <img src="./assets/img/defensa.jpg" alt="defensa"
+                  style="margin-top: 15px; margin-left: 20px; width: 300px; margin-bottom:20px;">
               </ion-col>
             </ion-row>
 
@@ -60,16 +88,21 @@
                 {{'E.T.S. Ingenieros Agrónomos y de Montes' | translate}}<br>
                 {{'Edificio Leonardo da Vinci. Campus de Rabanales' | translate}}<br>
                 {{'14071 Córdoba' | translate}}<br>
-                e-mail: <a href="mailto:labif@uco.es">labif@uco.es</a><br>
-                web: <a
-                  href="http://franciscorodriguezysilva.com/">http://franciscorodriguezysilva.com/</a>
+                e-mail: <a href="mailto:jrmolina@uco.es">jrmolina@uco.es</a><br>
+                web: <a href="https://labif.es/">https://labif.es</a>
               </ion-col>
               <ion-col sizeMd="4" sizeXs="12">
-                <img style="padding-left: 4px; padding-top: 10px;" src="./assets/img/labif-nuevo.png" alt="labif" width="200">
+                <img style="padding-left: 4px; padding-top: 10px;" src="./assets/img/labif-nuevo.png" alt="labif"
+                  width="200">
               </ion-col>
             </ion-row>
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="ScrollToTop()">
+      <ion-fab-button color="light">
+        <ion-icon name="arrow-up-circle"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </ion-content>

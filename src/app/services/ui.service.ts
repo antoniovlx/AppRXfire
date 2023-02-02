@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, IonContent, LoadingController, ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom, Subject } from 'rxjs';
+import { firstValueFrom, ReplaySubject, Subject } from 'rxjs';
+import { appPages } from '../app-routing.module';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,12 @@ export class UiService {
 
   private loader: HTMLIonLoadingElement;
   private loaderLoading = false;
-  private isTopScrolled$ = new Subject<boolean>();
   private selectTab$ = new Subject<string>();
 
   constructor(private loadingController: LoadingController, public toastController: ToastController,
-     private translate: TranslateService, private alertController: AlertController, private router: Router) { }
+    private translate: TranslateService, private alertController: AlertController, private router: Router) {
+
+  }
 
 
   public async presentLoading(message: string) {
@@ -48,6 +50,12 @@ export class UiService {
     }
   }
 
+  getPathData(url) {
+    let index = appPages.findIndex(page => url.startsWith(page.url));
+    return { title: appPages[index].title, imagePath: appPages[index].img };
+  }
+
+
   private checkEntradas(entradas) {
     for (const key in entradas) {
       if (entradas[key] === undefined)
@@ -64,11 +72,11 @@ export class UiService {
   }
 
 
-  selectTab(title:string) {
+  selectTab(title: string) {
     this.selectTab$.next(title);
   }
 
-  getSelectTab(){
+  getSelectTab() {
     return this.selectTab$.asObservable();
   }
 
@@ -80,6 +88,7 @@ export class UiService {
         icon: 'information-circle',
         position: 'top',
         cssClass: 'toast-message',
+        duration: 3000,
         buttons: [
           {
             text: "OK"
@@ -143,6 +152,7 @@ export class UiService {
 
   async avisoAlert(titulo: string, message: string, path?: string): Promise<boolean> {
     titulo = await firstValueFrom(this.translate.get(titulo));
+    message = await firstValueFrom(this.translate.get(message));
     let resolveFunction: (confirm: boolean) => void;
     const promise = new Promise<boolean>(resolve => {
       resolveFunction = resolve;
@@ -162,12 +172,8 @@ export class UiService {
     return promise;
   }
 
-  scrollTop$(isTopScrolled: boolean) {
-    this.isTopScrolled$.next(isTopScrolled);
-  }
-
-  getTopScrolled$() {
-    return this.isTopScrolled$.asObservable();
+  scrollTop$(content: IonContent) {
+    content.scrollToTop(1500);
   }
 
   async createMessageAviso(datos: string[]) {
@@ -182,11 +188,5 @@ export class UiService {
     }
     mensaje += "</ul>"
     return mensaje;
-  }
-
-  onTopScrolled(content){
-    this.getTopScrolled$().subscribe(() => {
-      content.scrollToTop();
-    });
   }
 }

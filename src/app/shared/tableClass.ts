@@ -22,6 +22,10 @@ export class TableClass {
         return numSelected !== 0;
     }
 
+    isCompareSelected(): boolean{
+        return this.selection.selected.length === 2;
+    }
+
     masterToggle() {
         this.isAllSelected() ?
             this.selection.clear() :

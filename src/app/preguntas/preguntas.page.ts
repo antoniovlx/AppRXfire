@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../services/app.service';
 import { IonContent } from '@ionic/angular';
 import { UiService } from '../services/ui.service';
-import { TcrRepository } from '../repositories/TcrRepository';
+import { EstimacionesPatronesRepository } from '../repositories/EstimacionesPatronesRepository';
 
 
 @Component({
@@ -15,14 +15,11 @@ export class PreguntasPage implements OnInit {
   @ViewChild(IonContent, { static: false }) content: IonContent;
   data: { longitudLlama: number; velocidadPropagacion: number; };
 
-  constructor(private uiService: UiService, private repository: TcrRepository) { }
+  constructor(private uiService: UiService, private repository: EstimacionesPatronesRepository) { }
 
   ngOnInit() {
     this.uiService.onTopScrolled(this.content);
-    this.repository.getVelocidadPropagacionAndLongitudLlama("1", 15, 9, 0)
-    .subscribe(data => {
-      this.data = data;
-    })
+  
 
   }
 

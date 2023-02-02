@@ -32,7 +32,7 @@ export class UtilService {
     return await firstValueFrom(this.translateService.get(key));
   }
 
-  async parseDataToBlob() {
+  /*async parseDataToBlob() {
     const data = Papa.unparse({
       "fields": ["Variable", "Value"],
       "data": await this.prepareResultData()
@@ -40,32 +40,66 @@ export class UtilService {
 
     let blob = new Blob([data], { type: "text/csv" });
     return blob;
+  }*/
+
+  async prepareResultData(data) {
+    let resultDataArray = [];
+    return resultDataArray.concat(await this.getArrayOfDataTranslated(data))
   }
 
-  async prepareResultData() {
-    // TO-DO
-    return [];
-  }
-
-  async getArrayOfDataTranslated(object) {
+  async getArrayOfDataTranslated(estimaciones) {
     let data = [];
-    for (const key in object) {
-      if (typeof object[key] === 'object') {
-        for (const keyObject in object[key]) {
-          data.push([await this.getTranslate(keyObject), object[key][keyObject]]);
-        }
-      } else {
-        data.push([await this.getTranslate(key), object[key]]);
-      }
-    }
+
+    await this.addRowHeader(estimaciones, data);
+    this.addRowData(estimaciones, data);
+
     return data;
   }
 
 
+  private addRowData(estimaciones: any, data: any[]) {
+    for (let index = 0; index < estimaciones.length; index++) {
+      let row = [];
+      const estimacion = estimaciones[index];
+      for (const key in estimacion) {
+        if (typeof estimacion[key] === 'object') {
+          for (const keyObject in estimacion[key]) {
+            if (keyObject !== 'id') {
+              row.push(estimacion[key][keyObject]);
+            }
+          }
+        } else {
+          if (key !== 'id') {
+            row.push(estimacion[key]);
+          }
+        }
+      }
+      data.push(row);
+    }
+  }
+
+  private async addRowHeader(estimaciones: any, data: any) {
+    let row = [];
+    for (const key in estimaciones[0]) {
+      if (typeof estimaciones[0][key] === 'object') {
+        for (const keyObject in estimaciones[0][key]) {
+          if (keyObject !== 'id') {
+            row.push(await this.getTranslate(keyObject));
+          }
+        }
+      } else {
+        if (key !== 'id') {
+          row.push(await this.getTranslate(key));
+        }
+      }
+    }
+    data.push(row);
+  }
+
   async saveFile(data: Blob, fileName: string) {
     let now = new Date(Date.now())
     var formattedDateTime = `${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}_${now.getHours()}_${now.getMinutes()}`;
-   
+
     if (this.appService.isMobile()) {
       this.writeAndOpenFile(data, `${fileName}_${formattedDateTime}.xlsx`);
     } else {
@@ -75,12 +109,9 @@ export class UtilService {
     this.uiService.dismissLoading();
   }
 
-  async generarInformeExcel() {
-
-    let data = await this.prepareResultData();
-
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data, { skipHeader: true });
-    const workbook: XLSX.WorkBook = { Sheets: { 'idex': worksheet }, SheetNames: ['idex'] };
+  async generarInformeExcel(data) {
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(await this.prepareResultData(data), { skipHeader: true });
+    const workbook: XLSX.WorkBook = { Sheets: { 'AppRXfire': worksheet }, SheetNames: ['AppRXfire'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
     return new Blob([excelBuffer], { type: "application/octet-stream" });
@@ -103,7 +134,7 @@ export class UtilService {
         that.uiService.presentToast("Datos exportados correctamente");
 
         let type = data.type;
-        if(data.type === 'application/octet-stream'){
+        if (data.type === 'application/octet-stream') {
           type = 'application/vnd.ms-excel';
         }
 
@@ -116,7 +147,7 @@ export class UtilService {
             that.uiService.presentAlertToast("Error opening file");
           });
 
-     
+
 
         console.log('Wrote file', result.uri);
       } catch (e) {

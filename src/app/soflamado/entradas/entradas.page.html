@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="img-header"></div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-grid fixed>
+    <titulo-apartado [imagePath]="'./assets/img/soflamado.png'" [titulo]="'Altura de soflamado'">
+    </titulo-apartado>
+
+    <ion-row>
+      <ion-col sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="6">
+        <ion-item>
+          <ion-label position="stacked">{{'temperatura' | translate}} (ºC)
+          </ion-label>
+          <ion-input type="number" #temperaturaInput (keypress)="ui.numberOnlyValidation($event)"
+            (ionInput)="updateTemperatura(temperaturaInput.value)" [(ngModel)]="temperatura">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="6">
+        <ion-item>
+          <ion-label position="stacked">{{'alturaArbolado' | translate}} (m)</ion-label>
+          <ion-input type="number" #alturaArboladoInput (keypress)="ui.numberOnlyValidation($event)"
+            (ionInput)="updateAlturaArbolado(alturaArboladoInput.value)" [(ngModel)]="alturaArbolado">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeSm="12" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'alturaPrimeraRama' | translate}} (m)</ion-label>
+          <ion-input type="number" #alturaPrimeraRamaInput (keypress)="ui.numberOnlyValidation($event)"
+            (ionInput)="updateAlturaPrimeraRama(alturaPrimeraRamaInput.value)" [(ngModel)]="alturaPrimeraRama">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'hayHuecos' | translate}}</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #existenHuecosSelect [value]="existenHuecos"
+            (ionChange)="updateExistenHuecos(existenHuecosSelect.value)">
+            <ion-select-option value="no">NO</ion-select-option>
+            <ion-select-option value="si">SI</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'localizacionHuecos' | translate}}</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #localizacionHuecosSelect [value]="localizacionHuecos"
+            (ionChange)="updateLocalizacionHuecos(localizacionHuecosSelect.value)"
+            [disabled]="existenHuecosSelect.value === undefined || existenHuecosSelect.value === 'no'">
+            <ion-select-option value="0">{{'Parte superior de la ladera' | translate}}</ion-select-option>
+            <ion-select-option value="1">{{'Otras zonas' | translate}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="6" sizeSm="12" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'distanciaHuecos' | translate}}</ion-label>
+          <ion-input type="number" #distanciaHuecosInput (keypress)="ui.numberOnlyValidation($event)"
+            [disabled]="existenHuecosSelect.value === undefined || existenHuecosSelect.value === 'no'"
+            (ionInput)="updateDistanciaHuecos(distanciaHuecosInput.value)" [(ngModel)]="distanciaHuecos">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col sizeLg="12" sizeMd="12" sizeSm="12" sizeXs="12">
+        <ion-button style="margin-top:20px" (click)="estimar()" expand="block"
+        [disabled]="isDisabledEstimacion()">
+          <ion-icon slot="start" name="pencil"></ion-icon>
+          {{ 'Estimar' | translate}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="ScrollToTop()">
+    <ion-fab-button color="light">
+      <ion-icon name="arrow-up-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

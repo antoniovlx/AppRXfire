@@ -18,7 +18,7 @@ export class ResultadosPage implements OnInit {
   constructor(private uiService: UiService) { }
 
   ngOnInit() {
-    this.uiService.onTopScrolled(this.content);
+
   }
 
   async exportData() {
