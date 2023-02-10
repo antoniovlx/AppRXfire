@@ -15,11 +15,9 @@ export class PreguntasPage implements OnInit {
   @ViewChild(IonContent, { static: false }) content: IonContent;
   data: { longitudLlama: number; velocidadPropagacion: number; };
 
-  constructor(private uiService: UiService, private repository: EstimacionesPatronesRepository) { }
+  constructor() { }
 
   ngOnInit() {
-    this.uiService.onTopScrolled(this.content);
-  
 
   }
 

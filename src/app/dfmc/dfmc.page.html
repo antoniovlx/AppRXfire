@@ -65,7 +65,7 @@
         </ion-col>
         <ion-col sizeXl="4" sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
           <ion-item>
-            <ion-label position="stacked">{{'Temperatura Aire' | translate}} (ºC)</ion-label>
+            <ion-label position="stacked">{{'temperaturaAire' | translate}} (ºC)</ion-label>
             <ion-input type="number" #temperaturaAireSelect (keypress)="ui.numberOnlyValidation($event)"
               (ionInput)="updateTemperaturaAireSelected(temperaturaAireSelect.value)"
               [(ngModel)]="temperaturaAireSelected">

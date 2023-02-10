@@ -48,7 +48,7 @@ export class HistorialPage extends TableClass implements OnInit {
 
   datesEnabled = [];
 
-  constructor(public ui: UiService, private soflamadoService: SoflamadoService, 
+  constructor(public ui: UiService, private soflamadoService: SoflamadoService,
     private utilService: UtilService, private translateService: TranslateService) {
     super();
   }
@@ -60,7 +60,7 @@ export class HistorialPage extends TableClass implements OnInit {
     })
   }
 
-  get today(){
+  get today() {
     return new Date().toISOString();
   }
 
@@ -69,16 +69,16 @@ export class HistorialPage extends TableClass implements OnInit {
     return index !== -1;
   };
 
-  filterFecha = () =>{
+  filterFecha = () => {
     this.isFilterByDate = !this.isFilterByDate
   };
 
-  filterDataByDate(date){
+  filterDataByDate(date) {
     this.soflamadoService.getEstimacionesSoflamadoByDate(date.split('T')[0])
-    .subscribe(data => {
-      this.prepareDataToShow(data);
-      this.renderTable();
-    })
+      .subscribe(data => {
+        this.prepareDataToShow(data);
+        this.renderTable();
+      })
   }
 
   ngAfterViewInit() {
@@ -101,6 +101,10 @@ export class HistorialPage extends TableClass implements OnInit {
   }
 
   private prepareDataToShow(data: EstimacionesSoflamado[]) {
+    data.forEach(row => {
+      this.datesEnabled.push(row.fecha.split('T')[0]);
+    })
+
     this.data = data;
   }
 

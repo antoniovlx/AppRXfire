@@ -61,32 +61,23 @@
                   </td>
                 </ng-container>
 
-                <!--<ng-container matColumnDef="opciones">
-                  <th mat-header-cell *matHeaderCellDef></th>
-                  <td mat-cell *matCellDef="let row">
-                    <ion-button (click)="verRegistro(row)">
-                      <ion-icon slot="icon-only" name="eye"></ion-icon>
-                    </ion-button>
-                  </td>
-                </ng-container>-->
-
                 <ng-container matColumnDef="fecha">
                   <th mat-header-cell *matHeaderCellDef> {{'fecha' | translate}} </th>
                   <td mat-cell *matCellDef="let row"> {{row.fecha | date:'d/M/YYYY, hh:mm:ss'}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="temp">
-                  <th mat-header-cell *matHeaderCellDef> {{'temperatura' | translate}} (ºC)</th>
+                  <th mat-header-cell *matHeaderCellDef> {{'temperatura' | translate}}</th>
                   <td mat-cell *matCellDef="let row"> {{row.temperatura}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="alturaArbolado">
-                  <th mat-header-cell *matHeaderCellDef> {{'alturaArbolado' | translate}} (m) </th>
+                  <th mat-header-cell *matHeaderCellDef> {{'alturaArbolado' | translate}}</th>
                   <td mat-cell *matCellDef="let row"> {{row.alturaArbolado}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="alturaRama">
-                  <th mat-header-cell *matHeaderCellDef> {{'alturaRama' | translate}} (m)</th>
+                  <th mat-header-cell *matHeaderCellDef> {{'alturaRama' | translate}}</th>
                   <td mat-cell *matCellDef="let row"> {{row.alturaRama }} </td>
                 </ng-container>
 
@@ -115,29 +106,29 @@
                 </ng-container>
 
                 <ng-container matColumnDef="distanciaHuecos">
-                  <th mat-header-cell *matHeaderCellDef> {{'Distancia huecos' | translate}} (m) </th>
+                  <th mat-header-cell *matHeaderCellDef> {{'distanciaHuecos' | translate}} </th>
                   <td mat-cell *matCellDef="let row"> {{row.distanciaHuecos}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="alturaSoflamadoMedia">
-                  <th mat-header-cell *matHeaderCellDef> {{'Altura media' | translate}} (m) </th>
+                  <th mat-header-cell *matHeaderCellDef> {{'altura' | translate}}</th>
                   <td mat-cell *matCellDef="let row"> {{row.alturaSoflamadoMedia}}
                   </td>
                 </ng-container>
 
                 <ng-container matColumnDef="volumenSoflamado">
-                  <th mat-header-cell *matHeaderCellDef> {{'Volumen' | translate}} (%) </th>
+                  <th mat-header-cell *matHeaderCellDef> {{'volumen' | translate}} </th>
                   <td mat-cell *matCellDef="let row"> {{row.volumenSoflamado}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="alturaSoflamadoHuecos">
-                  <th mat-header-cell *matHeaderCellDef> {{'Altura huecos' | translate}} (m) </th>
+                  <th mat-header-cell *matHeaderCellDef> {{'alturaSoflamadoHueco' | translate}} </th>
                   <td mat-cell *matCellDef="let row"> {{row.alturaSoflamadoHueco}}
                   </td>
                 </ng-container>
 
                 <ng-container matColumnDef="empty">
-                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="6"></th>
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="5"></th>
                 </ng-container>
 
                 <ng-container matColumnDef="huecos">

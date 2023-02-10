@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Registro</ion-title>
+    <ion-title>{{'Registro' | translate}}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="confirm()">OK</ion-button>
     </ion-buttons>
@@ -27,7 +27,7 @@
       </ion-col>
       <ion-col size="6">
         <ion-item>
-          <ion-label position="stacked">{{'velocidadViento' | translate}} (km/h)
+          <ion-label position="stacked">{{'velocidadViento' | translate}}
           </ion-label>
           <ion-input readonly="true" [value]="registro.velocidadViento | number : '1.0-3'">
           </ion-input>
@@ -35,7 +35,7 @@
       </ion-col>
       <ion-col size="6">
         <ion-item>
-          <ion-label position="stacked">{{'cargaCombustibleFinoMuerto' | translate}} (t/ha)
+          <ion-label position="stacked">{{'cargaFinoMuerto' | translate}}
           </ion-label>
           <ion-input readonly="true" [value]="registro.cargaCombustibleFinoMuerto | number : '1.0-3'">
           </ion-input>
@@ -43,7 +43,7 @@
       </ion-col>
       <ion-col size="6">
         <ion-item>
-          <ion-label position="stacked">{{'cargaTotal' | translate}} (t/ha)
+          <ion-label position="stacked">{{'cargaTotal' | translate}} 
           </ion-label>
           <ion-input readonly="true" [value]="registro.cargaTotal | number : '1.0-3'">
           </ion-input>
@@ -59,7 +59,7 @@
       </ion-col>
       <ion-col size="6">
         <ion-item>
-          <ion-label position="stacked">{{'distanciaLineasEncendido' | translate}} (m)
+          <ion-label position="stacked">{{'distanciaLineasEncendido' | translate}}
           </ion-label>
           <ion-input readonly="true" [value]="registro.distanciaLineasEncendido | number : '1.0-3'">
           </ion-input>

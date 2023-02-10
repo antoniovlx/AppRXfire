@@ -25,6 +25,6 @@ export class EntradasPage implements OnInit {
 
   }
   ngOnInit() {
-    this.uiService.onTopScrolled(this.content);
+    
   }
 }

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
@@ -40,7 +41,7 @@ export class EntradasPage implements OnInit {
   @ViewChild("content", { static: false })
   content: IonContent
 
-  constructor(public ui: UiService, private patronesService: PatronesService) { }
+  constructor(public ui: UiService, private patronesService: PatronesService, private router: Router) { }
 
   ngOnInit() {
     this.patronesData = this.patronesService.getPatronesData();
@@ -116,6 +117,13 @@ export class EntradasPage implements OnInit {
 
   updateIsObservado(valor: boolean) {
     this.isObservado = valor;
+
+    if (this.isObservado && this.distanciaFajas === undefined && this.numeroFajas === undefined) {
+      this.updateVelocidadPropagacion(0);
+      this.updateLongitudLlama(0);
+      this.updateDistanciaFajas(distanciaEntreFajas[0]);
+      this.updateNumeroFajas(lineasEncendido[0])
+    }
   }
 
   updateIsEstimado(valor: boolean) {
@@ -191,6 +199,10 @@ export class EntradasPage implements OnInit {
 
     if (this.isObservado) {
       this.calcularMetodoObservado();
+    }
+
+    if (this.isObservado || this.isEstimado) {
+      this.router.navigate(['/patrones/estimaciones']);
     }
 
     this.patronesService.resultadosPatronesUpdated();
