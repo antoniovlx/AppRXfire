@@ -16,7 +16,6 @@ export class EstimacionesPage implements OnInit{
   @ViewChild("content", {static: false})
   content: IonContent
 
-
   velocidadPropagacion: any;
   longitudLlama: any;
   resultados: ResultadosPatrones;
@@ -31,6 +30,7 @@ export class EstimacionesPage implements OnInit{
 
     this.patronesService.getResultadosPatronesUpdated().subscribe(resultados => {
       this.resultados = resultados;
+      console.log(this.resultados)
     })
   }
 

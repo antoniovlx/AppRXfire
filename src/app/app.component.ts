@@ -141,10 +141,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   changeLang(lang: string) {
     this.translate.use(lang);
     localStorage.setItem('lang', lang);
-
-    if (this.isElectron()) {
-      window.electron.ipc.sendSync('test', 'ping');
-    }
   }
 
   isElectron() {

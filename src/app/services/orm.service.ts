@@ -126,7 +126,7 @@ export class OrmService {
     //await this.sqlite.copyFromAssets(false);
     //}
 
-    if (!isDatabaseName) {
+    if (!isDatabaseName.result) {
       await this.sqlite.copyFromAssets(false);
     }
     //await this.sqlite.copyFromAssets(false);

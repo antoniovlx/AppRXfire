@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject, Observable } from 'rxjs';
 import { EstimacionesEstimado } from 'src/entities/EstimacionesEstimado';
 import { EstimacionesObservado } from 'src/entities/EstimacionesObservado';
@@ -147,7 +148,7 @@ export class PatronesService {
 
   toSave: boolean = false;
 
-  constructor(private patronesRepository: EstimacionesPatronesRepository, private uiService: UiService) {
+  constructor(private patronesRepository: EstimacionesPatronesRepository, private uiService: UiService, private router: Router) {
     this.patronesData = new PatronesData();
     this.initResultadosPatrones();
   }
@@ -176,6 +177,7 @@ export class PatronesService {
     this.saveResultadoPatrones(this.resultadosPatrones).subscribe(saved => {
       this.uiService.presentToast("mensaje guardado");
       this.resultados$.next(this.resultadosPatrones);
+      this.router.navigate(['/patrones/estimaciones']);
     })
   }
 

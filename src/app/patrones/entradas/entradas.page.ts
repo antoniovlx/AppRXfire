@@ -41,7 +41,7 @@ export class EntradasPage implements OnInit {
   @ViewChild("content", { static: false })
   content: IonContent
 
-  constructor(public ui: UiService, private patronesService: PatronesService, private router: Router) { }
+  constructor(public ui: UiService, private patronesService: PatronesService) { }
 
   ngOnInit() {
     this.patronesData = this.patronesService.getPatronesData();
@@ -202,14 +202,9 @@ export class EntradasPage implements OnInit {
     }
 
     if (this.isObservado || this.isEstimado) {
-      this.router.navigate(['/patrones/estimaciones']);
+      this.patronesService.resultadosPatronesUpdated();
     }
-
-    this.patronesService.resultadosPatronesUpdated();
-
-    //await this.ui.presentAlertToast(this.messageCheckEntradas);
   }
-
 
   private calcularMetodoObservado() {
     this.patronesService.calcularPatrones(TipoResultado.FAJAS, this.patronesService.getResultadosPatrones().observado);
