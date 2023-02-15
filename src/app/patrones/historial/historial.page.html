@@ -14,8 +14,9 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="4">
+        <ion-col sizeMd="4" sizeXs="6">
           <ion-button color="light" (click)="filterFecha()" expand="block">
+            <ion-icon slot="start" name="calendar"></ion-icon>
             {{ 'Filtrar fecha' | translate}}
           </ion-button>
           <ng-container *ngIf="isFilterByDate">
@@ -24,17 +25,19 @@
               <ng-template>
                 <ion-datetime [(ngModel)]="filterDate" (ionChange)="filterDataByDate(filterDateInput.value)"
                   presentation="date" #filterDateInput id="datetime" [isDateEnabled]="isEnableDay"
-                  [showDefaultButtons]="true" [max]="today"></ion-datetime>
+                  [showDefaultButtons]="true" 
+                  doneText="{{'Filtrar' | translate}}" cancelText="{{'Cancelar' | translate}}" 
+                  [max]="today"></ion-datetime>
               </ng-template>
             </ion-modal>
           </ng-container>
         </ion-col>
-        <ion-col size="4">
+        <ion-col sizeMd="4" sizeXs="6">
           <ion-button color="tertiary" (click)="loadData(); isFilterByDate = false" expand="block">
             {{ 'Mostrar todos' | translate}}
           </ion-button>
         </ion-col>
-        <ion-col size="4">
+        <ion-col sizeMd="4" sizeXs="12">
           <ion-button [disabled]="!isSelected()" color="danger" (click)="delete()" expand="block">{{'borrar' |
             translate}}
             <ion-icon slot="start" name="trash"></ion-icon>

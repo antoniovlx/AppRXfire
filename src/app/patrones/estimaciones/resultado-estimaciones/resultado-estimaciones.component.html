@@ -1,13 +1,13 @@
 <titulo-apartado [imagePath]="'./assets/img/estimacion.png'" [titulo]="'Método estimado'">
 </titulo-apartado>
-<ion-row>
+<ion-row class="margin-content-bottom">
   <ion-col size="12">
     <ion-item class="label-item">
       <ion-icon name="arrow-forward" slot="start"></ion-icon>
       <ion-label position="stacked">{{'Fajas' | translate}}</ion-label>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12"
     *ngIf="resultados.estimado.fajas.velocidadPropagacion !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'velocidadPropagacion' | translate}}
@@ -17,7 +17,7 @@
       </ion-input>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.estimado.fajas.longitudLlama !== undefined">
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12" *ngIf="resultados.estimado.fajas.longitudLlama !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'longitudLlama' | translate}}</ion-label>
       <ion-input type="number" readonly="true" [value]="resultados.estimado.fajas.longitudLlama | number : '1.0-3'">
@@ -36,7 +36,7 @@
       <ion-label position="stacked">{{'Flancos' | translate}}</ion-label>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12"
     *ngIf="resultados.estimado.flancos.velocidadPropagacion !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'velocidadPropagacion' | translate}}
@@ -46,7 +46,7 @@
       </ion-input>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.estimado.flancos.longitudLlama !== undefined">
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12" *ngIf="resultados.estimado.flancos.longitudLlama !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'longitudLlama' | translate}}</ion-label>
       <ion-input type="number" readonly="true" [value]="resultados.estimado.flancos.longitudLlama | number : '1.0-3'">
@@ -65,7 +65,7 @@
       <ion-label position="stacked">{{'Puntos' | translate}}</ion-label>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12"
     *ngIf="resultados.estimado.puntos.velocidadPropagacion !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'velocidadPropagacion' | translate}}
@@ -75,7 +75,7 @@
       </ion-input>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.estimado.puntos.longitudLlama !== undefined">
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12" *ngIf="resultados.estimado.puntos.longitudLlama !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'longitudLlama' | translate}}</ion-label>
       <ion-input type="number" readonly="true" [value]="resultados.estimado.puntos.longitudLlama | number : '1.0-3'">
@@ -98,7 +98,7 @@
       <ion-label position="stacked">{{'Fajas' | translate}}</ion-label>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12"
     *ngIf="resultados.observado.fajas.velocidadPropagacion !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'velocidadPropagacion' | translate}}
@@ -108,7 +108,7 @@
       </ion-input>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.observado.fajas.longitudLlama !== undefined">
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12" *ngIf="resultados.observado.fajas.longitudLlama !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'longitudLlama' | translate}}</ion-label>
       <ion-input type="number" readonly="true" [value]="resultados.observado.fajas.longitudLlama | number : '1.0-3'">
@@ -127,7 +127,7 @@
       <ion-label position="stacked">{{'Flancos' | translate}}</ion-label>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12"
     *ngIf="resultados.observado.flancos.velocidadPropagacion !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'velocidadPropagacion' | translate}}
@@ -137,7 +137,7 @@
       </ion-input>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.observado.flancos.longitudLlama !== undefined">
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12" *ngIf="resultados.observado.flancos.longitudLlama !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'longitudLlama' | translate}}</ion-label>
       <ion-input type="number" readonly="true" [value]="resultados.observado.flancos.longitudLlama | number : '1.0-3'">
@@ -156,7 +156,7 @@
       <ion-label position="stacked">{{'Puntos' | translate}}</ion-label>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6"
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12"
     *ngIf="resultados.observado.puntos.velocidadPropagacion !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'velocidadPropagacion' | translate}}
@@ -166,7 +166,7 @@
       </ion-input>
     </ion-item>
   </ion-col>
-  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6" *ngIf="resultados.observado.puntos.longitudLlama !== undefined">
+  <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12" *ngIf="resultados.observado.puntos.longitudLlama !== undefined">
     <ion-item class="resultados-apartado">
       <ion-label position="stacked">{{'longitudLlama' | translate}}</ion-label>
       <ion-input type="number" readonly="true" [value]="resultados.observado.puntos.longitudLlama | number : '1.0-3'">

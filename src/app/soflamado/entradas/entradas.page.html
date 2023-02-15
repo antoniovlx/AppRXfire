@@ -12,7 +12,7 @@
     <ion-row>
       <ion-col sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="6">
         <ion-item>
-          <ion-label position="stacked">{{'temperatura' | translate}} (ºC)
+          <ion-label position="stacked">{{'temperatura' | translate}}
           </ion-label>
           <ion-input type="number" #temperaturaInput (keypress)="ui.numberOnlyValidation($event)"
             (ionInput)="updateTemperatura(temperaturaInput.value)" [(ngModel)]="temperatura">
@@ -21,7 +21,7 @@
       </ion-col>
       <ion-col sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="6">
         <ion-item>
-          <ion-label position="stacked">{{'alturaArbolado' | translate}} (m)</ion-label>
+          <ion-label position="stacked">{{'alturaArbolado' | translate}}</ion-label>
           <ion-input type="number" #alturaArboladoInput (keypress)="ui.numberOnlyValidation($event)"
             (ionInput)="updateAlturaArbolado(alturaArboladoInput.value)" [(ngModel)]="alturaArbolado">
           </ion-input>
@@ -29,7 +29,7 @@
       </ion-col>
       <ion-col sizeLg="4" sizeMd="4" sizeSm="12" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'alturaPrimeraRama' | translate}} (m)</ion-label>
+          <ion-label position="stacked">{{'alturaPrimeraRama' | translate}}</ion-label>
           <ion-input type="number" #alturaPrimeraRamaInput (keypress)="ui.numberOnlyValidation($event)"
             (ionInput)="updateAlturaPrimeraRama(alturaPrimeraRamaInput.value)" [(ngModel)]="alturaPrimeraRama">
           </ion-input>

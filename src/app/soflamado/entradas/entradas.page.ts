@@ -40,7 +40,7 @@ export class EntradasPage implements OnInit {
   }
 
   updateExistenHuecos(existenHuecos) {
-    this.existenHuecos = existenHuecos;
+    this.existenHuecos = existenHuecos; 
     this.soflamadoData.hayHuecos = this.existenHuecos === 'si' ? true : false;
   }
 
@@ -79,9 +79,9 @@ export class EntradasPage implements OnInit {
     if(this.temperatura !== undefined && 
       this.temperatura !== '' && this.alturaArbolado !== undefined &&
       this.alturaArbolado !== '' && this.alturaPrimeraRama !== undefined &&
-      this.alturaPrimeraRama !== '' && (this.existenHuecos && 
+      this.alturaPrimeraRama !== '' && (!this.soflamadoData.hayHuecos || (this.soflamadoData.hayHuecos && 
       this.localizacionHuecos !== undefined && this.distanciaHuecos !== undefined 
-      && this.distanciaHuecos !== '' || !this.existenHuecos)){
+      && this.distanciaHuecos !== '' ))){
       return false;
     }
 

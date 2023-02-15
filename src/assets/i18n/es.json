@@ -21,6 +21,7 @@
   "Expuesto": "Expuesto. <50% de los combustibles en sombra.",
   "Fajas": "Fajas",
   "Faltan datos": "Faltan datos",
+  "Filtrar": "Filtrar",
   "Filtrar fecha": "FILTRAR FECHA",
   "Flancos": "Flancos",
   "Fortalecimiento de los sistemas transfronterizos de prevención y extinción de incendios forestales y mejora de los recursos para la generación de empleo rural post Covid-19 (FIREPOCTEP)": "Fortalecimiento de los sistemas transfronterizos de prevención y extinción de incendios forestales y mejora de los recursos para la generación de empleo rural post Covid-19 (FIREPOCTEP)",
@@ -98,6 +99,7 @@
   "longitudLlamaPuntos": "Longitud llama puntos (m)",
   "marzo": "Marzo",
   "mensaje altura soflamado": "Antes de calcular la altura de soflamado debe realizar una estimación de los patrones de ignición",
+  "mensaje borrado": "Elementos borrados correctamente",
   "mensaje guardado": "Estimación realizada correctamente",
   "no": "No",
   "noviembre": "Noviembre",
@@ -119,6 +121,6 @@
   "velocidadPropagacionPuntos": "Velocidad propagación puntos (km/h)",
   "velocidadViento": "Velocidad viento (2m suelo) (km/h)",
   "volumen": "Volumen (%)",
-  "volumenCopaSoflamado": "Scorch volume (%)",
+  "volumenCopaSoflamado": "Volumen soflamado (%)",
   "volumenSoflamado": "Volumen de copa soflamada (%)"
 }

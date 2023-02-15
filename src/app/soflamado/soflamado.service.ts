@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { EstimacionesSoflamado } from 'src/entities/EstimacionesSoflamado';
 import { PatronesData, PatronesService } from '../patrones/patrones.service';
@@ -38,7 +39,8 @@ export class SoflamadoService {
 
   toSave: boolean = false;
 
-  constructor(private uiService: UiService, private patronesService: PatronesService, private soflamadoRepository: EstimacionesSoflamadoRepository) {
+  constructor(private uiService: UiService, private patronesService: PatronesService, 
+    private soflamadoRepository: EstimacionesSoflamadoRepository, private router: Router) {
     this.soflamadoData = new SoflamadoData();
     this.patronesData = this.patronesService.getPatronesData();
     this.initResultadosSoflamado();
@@ -64,6 +66,7 @@ export class SoflamadoService {
     this.saveResultadoSoflamado(this.resultadosSoflamado).subscribe(saved => {
       this.uiService.presentToast("mensaje guardado");
       this.resultados$.next(this.resultadosSoflamado);
+      this.router.navigate(['/soflamado/estimaciones']);
     })
   }
 
@@ -86,8 +89,8 @@ export class SoflamadoService {
     patrones.alturaArbolado = this.soflamadoData.alturaArbolado;
     patrones.alturaRama = this.soflamadoData.alturaPrimeraRama;
     patrones.existenHuecos = this.soflamadoData.hayHuecos.toString();
-    patrones.distanciaHuecos = this.soflamadoData.distanciaHuecos.toString();
-    patrones.localizacionHuecos = this.soflamadoData.localizacionHuecos.toString();
+    patrones.distanciaHuecos = this.soflamadoData.distanciaHuecos !== undefined ? this.soflamadoData.distanciaHuecos.toString() : "-";
+    patrones.localizacionHuecos = this.soflamadoData.localizacionHuecos !== undefined ? this.soflamadoData.localizacionHuecos.toString() : "-";
 
     patrones.alturaSoflamadoMedia = resultados.alturaSoflamadoMedia;
     patrones.volumenSoflamado = resultados.volumenCopaSoflamado;
@@ -110,6 +113,8 @@ export class SoflamadoService {
           this.resultadosSoflamado.alturaSoflamadoHueco = this.calcularAlturaSoflamadoHuecosOtras();
           break;
       }
+    }else{
+      this.resultadosSoflamado.alturaSoflamadoHueco = "-";
     }
   }
 

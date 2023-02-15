@@ -529,12 +529,19 @@ ion-col ion-item {
 ion-col ion-item.label-item {
   --border-color: white;
   min-height: 20px;
+} 
 
-}
+ion-col ion-item.label-item ion-label, ion-icon[name="arrow-forward"]{
+  color: var(--ion-color-primary) !important;
+} 
 
 ion-col ion-label {
   font-weight: 500;
   min-height: 16px;
+}
+
+.margin-content-bottom{
+  margin-bottom: 10px;
 }
 
 .item.sc-ion-label-md-h,

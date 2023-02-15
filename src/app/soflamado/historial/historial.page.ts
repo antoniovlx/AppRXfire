@@ -156,7 +156,7 @@ export class HistorialPage extends TableClass implements OnInit {
         this.soflamadoService.deleteEstimacionSoflamado(estimacion).subscribe(() => {
           count++
           if (count === selectedLen) {
-            this.ui.presentToast("Mensaje borrado");
+            this.ui.presentToast("mensaje borrado");
             this.selection.clear();
             this.loadData();
           }
